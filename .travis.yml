@@ -1,0 +1,19 @@
+if: tag IS NOT present
+os: linux
+dist: focal
+language: cpp
+
+install:
+  - sudo apt update
+  - sudo apt install qt5-default cmake zlib1g-dev openjdk-8-jdk libgl1-mesa-dev
+
+script:
+  - pwd
+  - mkdir ~/MultiMC && cd ~/MultiMC
+  - mkdir build
+  - mkdir install
+  - git clone --recursive https://github.com/Sebastian-byte/MultiMC5-Cracked.git src
+  - cd build
+  - cmake -DCMAKE_INSTALL_PREFIX=../install ../src
+  - make -j2 install
+  - ls -lAh ~/MultiMC/ && ls -lAh ~/MultiMC/build && ls -lAh ~/MultiMC/install
