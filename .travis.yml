@@ -16,4 +16,4 @@ script:
   - cd build
   - cmake -DCMAKE_INSTALL_PREFIX=../install ../src
   - make -j2 install
-  - ls -lAh ~/MultiMC/ && ls -lAh ~/MultiMC/build && ls -lAh ~/MultiMC/install
+  - ls -lAh ~/MultiMC/ && ls -lAh ~/MultiMC/build && ls -lAh ~/MultiMC/install && ls -lAh ~/MultiMC/src && ~/MultiMC/install/bin && ~/MultiMC/install/MultiMC
