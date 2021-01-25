@@ -2,29 +2,6 @@ if: tag IS NOT present
 os: windows
 language: cpp
 
-before_install:
-- |-
-    case $TRAVIS_OS_NAME in
-      windows)
-        [[ ! -f C:/tools/msys64/msys2_shell.cmd ]] && rm -rf C:/tools/msys64
-        choco upgrade --no-progress -y msys2
-        taskkill //IM gpg-agent.exe //F
-        ;;
-    esac
-
-before_cache:
-- |-
-    case $TRAVIS_OS_NAME in
-      windows)
-        $msys2 pacman --sync --clean --noconfirm
-        ;;
-    esac
-
-cache:
-    directories:
-    - $HOME/AppData/Local/Temp/chocolatey
-    - /C/tools/msys64
-
 install:
   - choco install openssl -y --x86
   - choco install jdk8 -y
