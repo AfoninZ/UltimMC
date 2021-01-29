@@ -24,8 +24,7 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: Install Dependencies
-        run: |
-          brew install qt5
+        run: brew install qt5
           
       - name: Compile
         run: |
@@ -37,7 +36,7 @@ jobs:
           cd build
           export CMAKE_PREFIX_PATH=/usr/local/opt/qt5
           export CC=$(which gcc-10)
-          export CXX=/usr/local/bin/g++
+          export CXX=$(which g++-10)
           cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/Users/runner/MultiMC5-Cracked/install
           make
           make install
