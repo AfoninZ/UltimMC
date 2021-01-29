@@ -3,6 +3,10 @@ os: windows
 language: cpp
 
 install:
+  - choco install  python --version 3.8.0
+  - python -m pip install --upgrade pip
+  - python -m pip install aqtinstall
+  - python -m aqt install --outputdir /c/Qt 5.14.2 windows desktop win32_mingw81
   - choco install openssl -y --x86
   - choco install jdk8 -y
   - powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/zlib.install/master/install.bat', 'install.bat')"; ./install.bat
@@ -14,6 +18,6 @@ script:
   - mkdir install
   - git clone --recursive https://github.com/Sebastian-byte/MultiMC5-Cracked.git src
   - cd src
-  - cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="../install" -DZLIB_LIBRARY="C:/Program Files/zlib" -DZLIB_INCLUDE_DIR="C:/Program Files/zlib/include"
+  - cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="../install" -DCMAKE_PREFIX_PATH="C:/Qt/5.14.2/mingw81_32" -DZLIB_LIBRARY="C:/Program Files/zlib" -DZLIB_INCLUDE_DIR="C:/Program Files/zlib/include"
   - mingw32-make -j3
   - mingw32-make install
