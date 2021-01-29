@@ -43,7 +43,7 @@ jobs:
         with:
           name: install
           path: |
-            ../install
+            /home/runner/MultiMC/install
 
   # This workflow contains a single job called "build"
   build-windows: # Actually Fails
