@@ -4,6 +4,7 @@ language: cpp
 
 install:
   - choco install python
+  - python -m ensurepip --default-pip
   - python -m pip install aqtinstall
   - python -m aqt install --outputdir /c/Qt 5.14.2 windows desktop win32_mingw81
   - choco install openssl -y --x86
