@@ -26,7 +26,7 @@ jobs:
       - name: Install Dependencies
         run: |
           brew install qt5
-          brew install gcc48
+          brew install gcc
           brew install cmake
       - name: Compile
         run: |
@@ -37,8 +37,8 @@ jobs:
           mkdir build
           cd build
           export CMAKE_PREFIX_PATH=/usr/local/opt/qt5
-          export CC=/usr/local/bin/gcc-4.8
-          export CXX=/usr/local/bin/g++-4.8
+          export CC=/usr/local/bin/gcc
+          export CXX=/usr/local/bin/g++
           cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/Users/runner/MultiMC5/install
           make
           make install
@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: install
-          path: /home/runner/MultiMC/install
+          path: /Users/runner/MultiMC5/install
           
   build-linux:
     name: build-linux
