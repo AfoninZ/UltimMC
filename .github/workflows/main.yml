@@ -31,7 +31,7 @@ jobs:
       - name: Compile
         run: |
           git clone https://github.com/Sebastian-byte/MultiMC5-Cracked.git
-          cd MultiMC5
+          cd MultiMC5-Cracked
           git submodule init
           git submodule update
           mkdir build
@@ -39,14 +39,14 @@ jobs:
           export CMAKE_PREFIX_PATH=/usr/local/opt/qt5
           export CC=/usr/local/bin/gcc
           export CXX=/usr/local/bin/g++
-          cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/Users/runner/MultiMC5/install
+          cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/Users/runner/MultiMC5-Cracked/install
           make
           make install
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: install
-          path: /Users/runner/MultiMC5/install
+          path: /Users/runner/MultiMC5-Cracked/install
           
   build-linux:
     name: build-linux
