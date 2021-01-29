@@ -3,8 +3,7 @@ os: windows
 language: cpp
 
 install:
-  - choco install  python --version 3.8.0
-  - python -m pip install --upgrade pip
+  - choco install python
   - python -m pip install aqtinstall
   - python -m aqt install --outputdir /c/Qt 5.14.2 windows desktop win32_mingw81
   - choco install openssl -y --x86
