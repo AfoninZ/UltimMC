@@ -15,30 +15,39 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  buildlinux:
+  build-linux:
     name: build-linux
     runs-on: ubuntu-latest
+    
     
     steps:
       - uses: actions/checkout@v2
       
-      - name: Run a multi-line script
+      - name: Install Dependencies
+        run: sudo apt install openjdk-8-jdk libgl1-mesa-dev qt5-default
+      - name: Compile
         run: |
-          sudo apt install gcc zlib1g-dev openjdk-8-jdk libgl1-mesa-dev qt5-default git
           # make all the folders
           mkdir ~/MultiMC && cd ~/MultiMC
           mkdir build
           mkdir install
           # clone the complete source
-          git clone --recursive https://github.com/MultiMC/MultiMC5.git src
+          git clone --recursive https://github.com/Sebastian-byte/MultiMC5-Cracked.git src
           # configure the project
           cd build
           cmake -DCMAKE_INSTALL_PREFIX=../install ../src
-          # build & install (use -j with the number of cores your CPU has)
+          # build & install
           make -j3 install
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: install
+          path: |
+            ../install
 
   # This workflow contains a single job called "build"
   build-windows: # Actually Fails
+    name: build-windows
     # The type of runner that the job will run on
     runs-on: windows-latest
     
