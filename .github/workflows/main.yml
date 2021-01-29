@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   buildlinux:
-    name: build-for-linux
+    name: build-linux
     runs-on: ubuntu-latest
     
     steps:
@@ -24,7 +24,7 @@ jobs:
       
       - name: Run a multi-line script
         run: |
-          sudo apt install gcc zlib1g-dev openjdk-8-jdk libgl1-mesa-dev qt-default
+          sudo apt install gcc zlib1g-dev openjdk-8-jdk libgl1-mesa-dev qt5-default git
           # make all the folders
           mkdir ~/MultiMC && cd ~/MultiMC
           mkdir build
