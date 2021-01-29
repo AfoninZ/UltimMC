@@ -26,7 +26,6 @@ jobs:
       - name: Install Dependencies
         run: |
           brew install qt5
-          brew tap homebrew/versions
           brew install gcc48
           brew install cmake
       - name: Compile
