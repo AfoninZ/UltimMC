@@ -15,8 +15,30 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  buildlinux:
+    name: build-for-linux
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Run a multi-line script
+        run: |
+          sudo apt install gcc zlib1g-dev openjdk-8-jdk libgl1-mesa-dev qt-default
+          # make all the folders
+          mkdir ~/MultiMC && cd ~/MultiMC
+          mkdir build
+          mkdir install
+          # clone the complete source
+          git clone --recursive https://github.com/MultiMC/MultiMC5.git src
+          # configure the project
+          cd build
+          cmake -DCMAKE_INSTALL_PREFIX=../install ../src
+          # build & install (use -j with the number of cores your CPU has)
+          make -j3 install
+
   # This workflow contains a single job called "build"
-  build:
+  build-windows: # Actually Fails
     # The type of runner that the job will run on
     runs-on: windows-latest
     
@@ -40,22 +62,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: java -version
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           mkdir src
           git clone --recursive https://github.com/AfoninZ/MultiMC5-Cracked.git src
           powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/horta/zlib.install/master/install.bat', 'install.bat')"; ./install.bat
-          mingw32-make.exe --version
           mkdir install
           cd src
           git submodule init
           git submodule update
-          cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="..\install" -DZLIB_LIBRARY="C:/Program Files/zlib" -DZLIB_INCLUDE_DIR="C:/Program Files/zlib/include"
+          cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="..\\install" -DZLIB_LIBRARY="C:/Program Files/zlib" -DZLIB_INCLUDE_DIR="C:/Program Files/zlib/include"
           mingw32-make.exe -j3
           mingw32-make.exe install
-          
