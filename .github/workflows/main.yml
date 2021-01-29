@@ -35,8 +35,8 @@ jobs:
           mkdir build
           cd build
           export CMAKE_PREFIX_PATH=/usr/local/opt/qt5
-          export CC=$(which gcc-10)
-          export CXX=$(which g++-10)
+          export CC=$(which clang)
+          export CXX=$(which clang++)
           cmake .. -DCMAKE_INSTALL_PREFIX:PATH=/Users/runner/MultiMC5-Cracked/install
           make
           make install
