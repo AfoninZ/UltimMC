@@ -37,14 +37,13 @@ jobs:
           git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git MMC5C
           cd $HOME\MMC5C
           mkdir build
-          cd build
+          
           cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=$HOME\MMC5C\build
-          mingw32-make -j3
-          mingw32-make install
+          $GITHUB_WORKSPACE\Qt\$env.QT_VERSION\$env.MINGW_VERSION\bin\mingw32-make.exe -j3
+          $GITHUB_WORKSPACE\Qt\$env.QT_VERSION\$env.MINGW_VERSION\bin\mingw32-make.exe install
 
       - name: Deploy artifact
         uses: actions/upload-artifact@v2
         with:
           name: MultiMC
           path: $HOME\MMC5C\build
-
