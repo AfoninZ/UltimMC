@@ -41,7 +41,7 @@ jobs:
 
       - name: Deploy artifact
         uses: actions/upload-artifact@v2
-          with:
-            name: MultiMC
-            path: ${{HOME}}\MMC5C\build
+        with:
+          name: MultiMC
+          path: ${{HOME}}\MMC5C\build
 
