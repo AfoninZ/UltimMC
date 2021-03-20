@@ -22,11 +22,12 @@ jobs:
           msystem: MINGW32
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2.5.3
+        uses: jurplel/install-qt-action@v2
         with:
           version: ${{ env.QT_VERSION }}
           arch:    ${{ env.MINGW_VERSION }}
           extra:   --external 7z
+          dir: ${{ github.workspace }}/
 
       #- uses: actions/checkout@v2
 
