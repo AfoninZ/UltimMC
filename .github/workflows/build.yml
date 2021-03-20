@@ -31,7 +31,8 @@ jobs:
 
       - name: Compile
         run: |
-          git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git $HOME\MMC5C
+          cd $HOME
+          git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git MMC5C
           cd $HOME\MMC5C
           mkdir build
           cd build
