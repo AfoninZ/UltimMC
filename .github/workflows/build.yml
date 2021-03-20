@@ -39,8 +39,9 @@ jobs:
           mkdir build
           
           cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=$HOME\MMC5C\build
-          $GITHUB_WORKSPACE/Qt/$QT_VERSION/$MINGW_VERSION/bin/mingw32-make.exe -j3
-          $GITHUB_WORKSPACE/Qt/$QT_VERSION/$MINGW_VERSION/bin/mingw32-make.exe install
+          cd $GITHUB_WORKSPACE\Qt\$QT_VERSION\$MINGW_VERSION\bin
+          .\mingw32-make.exe -j3
+          .\mingw32-make.exe install
 
       - name: Deploy artifact
         uses: actions/upload-artifact@v2
