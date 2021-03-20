@@ -31,17 +31,17 @@ jobs:
 
       - name: Compile
         run: |
-          git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git ${{HOME}}\MMC5C
-          cd ${{HOME}}\MMC5C
+          git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git $HOME\MMC5C
+          cd $HOME\MMC5C
           mkdir build
           cd build
-          cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=${{HOME}}\MMC5C\build
-          mingw32-make -j2
+          cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=$HOME\MMC5C\build
+          mingw32-make -j3
           mingw32-make install
 
       - name: Deploy artifact
         uses: actions/upload-artifact@v2
         with:
           name: MultiMC
-          path: ${{HOME}}\MMC5C\build
+          path: $HOME\MMC5C\build
 
