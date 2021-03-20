@@ -4,6 +4,7 @@ env:
   QT_VERSION:     "5.12.7"
   MINGW_VERSION:  "win32_mingw73"
   MINGW_PATH:     "mingw73_32"
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
 
 on: [workflow_dispatch]
 
