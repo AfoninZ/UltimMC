@@ -1,0 +1,47 @@
+name: CI
+
+env:
+  QT_VERSION:     "5.12.7"
+  MINGW_VERSION:  "win32_mingw73"
+  MINGW_PATH:     "mingw73_32"
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+
+      - name: Install correct version of mingw
+        run: |
+          choco uninstall mingw --force
+          choco uninstall strawberryperl --force
+      - uses: numworks/setup-msys2@v1
+        with:
+          msystem: MINGW32
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2.5.3
+        with:
+          version: ${{ env.QT_VERSION }}
+          arch:    ${{ env.MINGW_VERSION }}
+          extra:   --external 7z
+
+      #- uses: actions/checkout@v2
+
+      - name: Compile
+        run: |
+          git clone --recursive https://github.com/Panderine/MultiMC5-Cracked.git ${{HOME}}\MMC5C
+          cd ${{HOME}}\MMC5C
+          mkdir build
+          cd build
+          cmake -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX=${{HOME}}\MMC5C\build
+          mingw32-make -j2
+          mingw32-make install
+
+      - name: Deploy artifact
+        uses: actions/upload-artifact@v2
+          with:
+            name: MultiMC
+            path: ${{HOME}}\MMC5C\build
+
