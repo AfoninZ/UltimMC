@@ -202,7 +202,7 @@ std::shared_ptr<YggdrasilTask> MojangAccount::login(AuthSessionPtr session, QStr
             // TODO: Proper profile support (idk how)
             auto dummyProfile = AccountProfile();
             dummyProfile.name = m_username;
-            dummyProfile.id = "-";
+            dummyProfile.id = QUuid::createUuid().toString().remove(QRegExp("[{}]"));
             m_profiles.append(dummyProfile);
             m_currentProfile = 0;
         }
