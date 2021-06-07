@@ -6,6 +6,7 @@
 #include <QDir>
 #include "multimc_logic_export.h"
 #include "minecraft/launch/MinecraftServerTarget.h"
+#include "minecraft/launch/InjectAuthlib.h"
 
 class ModFolderModel;
 class WorldList;
@@ -128,6 +129,7 @@ protected: // data
     mutable std::shared_ptr<ModFolderModel> m_texture_pack_list;
     mutable std::shared_ptr<WorldList> m_world_list;
     mutable std::shared_ptr<GameOptions> m_game_options;
+    mutable std::shared_ptr<AuthlibInjector> m_injector;
 };
 
 typedef std::shared_ptr<MinecraftInstance> MinecraftInstancePtr;
