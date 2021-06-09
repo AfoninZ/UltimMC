@@ -61,7 +61,6 @@ void InjectAuthlib::onVersionDownloadSucceeded()
     return;
   }
 
-  qDebug() << "Version got\n";
   QJsonParseError parse_error;
   QJsonDocument doc = QJsonDocument::fromJson(data, &parse_error);
   if (parse_error.error != QJsonParseError::NoError)
@@ -118,7 +117,6 @@ void InjectAuthlib::onDownloadSucceeded()
   qDebug()
       << "Injecting " << injector;
   auto inj = new AuthlibInjector(injector);
-  qDebug() << "aAA" << inj;
   m_injector->reset(inj);
 
   jobPtr.reset();
@@ -134,22 +132,6 @@ void InjectAuthlib::onDownloadFailed(QString reason)
 void InjectAuthlib::proceed()
 {
 }
-
-// void InjectAuthlib::updateFinished()
-// {
-//   // if (m_updateTask->wasSuccessful())
-//   // {
-//   //   m_updateTask.reset();
-//   //   emitSucceeded();
-//   // }
-//   // else
-//   // {
-//   //   QString reason = tr("Instance update failed because: %1\n\n").arg(m_updateTask->failReason());
-//   //   m_updateTask.reset();
-//   //   emit logLine(reason, MessageLevel::Fatal);
-//   //   emitFailed(reason);
-//   // }
-// }
 
 bool InjectAuthlib::canAbort() const
 {
