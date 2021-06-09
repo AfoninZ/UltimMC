@@ -113,7 +113,7 @@ void InjectAuthlib::onVersionDownloadSucceeded()
 
 void InjectAuthlib::onDownloadSucceeded()
 {
-  QString injector = QString("-javaagent:%1=%2").arg(QDir("injectors").absoluteFilePath(m_versionName)).arg("http://localhost:8000");
+  QString injector = QString("-javaagent:%1=%2").arg(QDir("injectors").absoluteFilePath(m_versionName)).arg("http://localhost:6000");
 
   qDebug()
       << "Injecting " << injector;

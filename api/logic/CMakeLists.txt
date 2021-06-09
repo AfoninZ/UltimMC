@@ -4,6 +4,8 @@ include (UnitTest)
 
 set(CORE_SOURCES
     # LOGIC - Base classes and infrastructure
+    AuthServer.h
+    AuthServer.cpp
     BaseInstaller.h
     BaseInstaller.cpp
     BaseVersionList.h

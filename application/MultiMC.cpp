@@ -54,6 +54,7 @@
 #include "tools/JProfiler.h"
 #include "tools/JVisualVM.h"
 #include "tools/MCEditTool.h"
+#include "AuthServer.h"
 
 #include <xdgicon.h>
 #include "settings/INISettingsObject.h"
@@ -722,6 +723,11 @@ MultiMC::MultiMC(int &argc, char **argv) : QApplication(argc, argv)
     // Create the MCEdit thing... why is this here?
     {
         m_mcedit.reset(new MCEditTool(m_settings));
+    }
+
+    {
+        m_authserver.reset(new AuthServer(this));
+        qDebug() << "<> Auth server started.";
     }
 
     connect(this, &MultiMC::aboutToQuit, [this](){
