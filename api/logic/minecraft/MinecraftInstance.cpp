@@ -918,6 +918,7 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
     }
 
     // authlib patch
+    if (session->m_accountPtr->loginType() == "dummy")
     {
         auto step = new InjectAuthlib(pptr, &m_injector);
         step->setAuthServer(((QString)"http://localhost:%1").arg(localAuthServerPort));
