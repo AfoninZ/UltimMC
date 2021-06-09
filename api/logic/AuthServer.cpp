@@ -9,11 +9,16 @@ AuthServer::AuthServer(QObject *parent) : QObject(parent)
 
   connect(m_tcpServer.get(), &QTcpServer::newConnection, this, &AuthServer::newConnection);
 
-  if (!m_tcpServer->listen(QHostAddress::Any, 6000))
+  if (!m_tcpServer->listen(QHostAddress::LocalHost))
   {
     // TODO: think about stop launching when server start fails 
     qCritical() << "Auth server start failed";
   }
+}
+
+quint16 AuthServer::port()
+{
+  return m_tcpServer->serverPort();
 }
 
 void AuthServer::newConnection()

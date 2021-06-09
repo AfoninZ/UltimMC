@@ -195,7 +195,7 @@ private:
     std::shared_ptr<GenericPageProvider> m_globalSettingsProvider;
     std::map<QString, std::unique_ptr<ITheme>> m_themes;
     std::unique_ptr<MCEditTool> m_mcedit;
-    std::unique_ptr<AuthServer> m_authserver;
+    std::shared_ptr<AuthServer> m_authserver;
 
     QMap<QString, std::shared_ptr<BaseProfilerFactory>> m_profilers;
 

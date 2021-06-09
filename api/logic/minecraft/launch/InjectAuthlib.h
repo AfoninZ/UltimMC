@@ -46,6 +46,12 @@ public:
   void executeTask() override;
   bool canAbort() const override;
   void proceed() override;
+
+  void setAuthServer(QString server)
+  {
+    m_authServer = server;
+  };
+
 public slots:
   bool abort() override;
 
@@ -59,5 +65,6 @@ private:
   bool m_aborted = false;
 
   QString m_versionName;
+  QString m_authServer;
   AuthlibInjectorPtr *m_injector;
 };

@@ -1108,6 +1108,7 @@ bool MultiMC::launch(
         controller->setOnline(online);
         controller->setProfiler(profiler);
         controller->setServerToJoin(serverToJoin);
+        controller->setAuthserver(m_authserver);
         if(window)
         {
             controller->setParentWidget(window);

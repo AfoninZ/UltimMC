@@ -825,7 +825,7 @@ shared_qobject_ptr<Task> MinecraftInstance::createUpdateTask(Net::Mode mode)
     return nullptr;
 }
 
-shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPtr session, MinecraftServerTargetPtr serverToJoin)
+shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPtr session, MinecraftServerTargetPtr serverToJoin, quint16 localAuthServerPort)
 {
     // FIXME: get rid of shared_from_this ...
     auto process = LaunchTask::create(std::dynamic_pointer_cast<MinecraftInstance>(shared_from_this()));
@@ -919,7 +919,9 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
 
     // authlib patch
     {
-        process->appendStep(new InjectAuthlib(pptr, &m_injector));
+        auto step = new InjectAuthlib(pptr, &m_injector);
+        step->setAuthServer(((QString)"http://localhost:%1").arg(localAuthServerPort));
+        process->appendStep(step);
     }
 
     // download authlib

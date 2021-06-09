@@ -10,6 +10,8 @@ class MULTIMC_LOGIC_EXPORT AuthServer: public QObject
 public:
   explicit AuthServer(QObject *parent = 0);
 
+  quint16 port();
+
 private:
   void newConnection();
   
