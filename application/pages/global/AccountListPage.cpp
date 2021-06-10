@@ -55,6 +55,7 @@ AccountListPage::AccountListPage(QWidget *parent)
 
     // Expand the account column
     ui->listView->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->listView->header()->setSectionResizeMode(2, QHeaderView::Stretch);
 
     QItemSelectionModel *selectionModel = ui->listView->selectionModel();
 
