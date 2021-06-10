@@ -18,6 +18,8 @@
 #include <minecraft/MinecraftInstance.h>
 #include <FileSystem.h>
 #include <Env.h>
+#include <Json.h>
+
 InjectAuthlib::InjectAuthlib(LaunchTask *parent, AuthlibInjectorPtr* injector) : LaunchStep(parent)
 {
   m_injector = injector;
@@ -81,17 +83,20 @@ void InjectAuthlib::onVersionDownloadSucceeded()
     return;
   }
 
-  auto downloadUrlValue = doc["download_url"];
-  if (!downloadUrlValue.isString())
+  QString downloadUrl;
+  try
+  {
+    downloadUrl = Json::requireString(doc.object(), "download_url");
+  }
+  catch (const JSONValidationError &e)
   {
     qCritical() << "Error while parsing JSON response from InjectorEndpoint download url is not string";
+    qCritical() << e.cause();
     qCritical() << data;
     jobPtr.reset();
     emitFailed("Error while parsing JSON response from InjectorEndpoint");
     return;
   }
-
-  QString downloadUrl = downloadUrlValue.toString();
 
   QFileInfo fi(downloadUrl);
   m_versionName = fi.fileName();
