@@ -143,9 +143,11 @@ void AccountListPage::updateButtonStates()
 
     ui->actionRemove->setEnabled(selection.size() > 0);
     ui->actionSetDefault->setEnabled(selection.size() > 0);
-    ui->actionUploadSkin->setEnabled(selection.size() > 0);
-    ui->actionDeleteSkin->setEnabled(selection.size() > 0);
 
+    bool enableSkins = selection.size() > 0 && selection.first().data(MojangAccountList::PointerRole).value<MojangAccountPtr>()->loginType() == "mojang";
+    ui->actionUploadSkin->setEnabled(enableSkins);
+    ui->actionDeleteSkin->setEnabled(enableSkins);
+    
     if(m_accounts->activeAccount().get() == nullptr) {
         ui->actionNoDefault->setEnabled(false);
         ui->actionNoDefault->setChecked(true);
