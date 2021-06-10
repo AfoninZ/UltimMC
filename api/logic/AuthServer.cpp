@@ -54,12 +54,20 @@ void AuthServer::newConnection()
               responseStatusCode = 404;
             }
 
-            if(responseBody.length() != 0){
-              responseHeaders << ((QString)"Content-Length: %1").arg(responseBody.length());
+            QString responseStatusText = "Internal Server Error";
+            if (responseStatusCode == 200)
+              responseStatusText = "OK";
+            else if (responseStatusCode == 204)
+              responseStatusText = "No Content";
+            else if (responseStatusCode == 404)
+              responseStatusText = "Not Found";
+
+            if (responseBody.length() != 0)
+            {
+              responseHeaders << ((QString) "Content-Length: %1").arg(responseBody.length());
             }
 
-
-            tcpSocket->write(((QString)"HTTP/1.1 %1 OK\r\nConnection: keep-alive\r\n").arg(responseStatusCode).toUtf8());
+            tcpSocket->write(((QString) "HTTP/1.1 %1 %2\r\nConnection: keep-alive\r\n").arg(responseStatusCode).arg(responseStatusText).toUtf8());
             tcpSocket->write(responseHeaders.join("\r\n").toUtf8());
             tcpSocket->write("\r\n\r\n");
             tcpSocket->write(responseBody.toUtf8());
