@@ -928,8 +928,6 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
         process->appendStep(step);
     }
 
-    // download authlib
-
     {
         // actually launch the game
         auto method = launchMethod();
