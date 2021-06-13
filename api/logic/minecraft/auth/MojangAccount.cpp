@@ -150,8 +150,8 @@ QJsonObject MojangAccount::saveToJson() const
 
 bool MojangAccount::setLoginType(AuthProviderPtr loginType)
 {
-    if(m_loginType == nullptr) return false;
-    
+    if (loginType == nullptr)
+        return false;
     m_loginType = loginType;
     return true;
 }
