@@ -24,7 +24,9 @@
 
 #include <memory>
 #include "AuthSession.h"
+#include "AccountProfile.h"
 #include "Usable.h"
+#include "providers/BaseAuthProvider.h"
 
 #include "multimc_logic_export.h"
 
@@ -42,12 +44,6 @@ Q_DECLARE_METATYPE(MojangAccountPtr)
  * but we might as well add some things for it in MultiMC right now so
  * we don't have to rip the code to pieces to add it later.
  */
-struct AccountProfile
-{
-    QString id;
-    QString name;
-    bool legacy;
-};
 
 enum AccountStatus
 {
@@ -86,9 +82,8 @@ public: /* construction */
 public: /* manipulation */
         /**
      * Overrides the login type on the account.
-     * Accepts "mojang" and "dummy". Returns false if other.
      */
-    bool setLoginType(const QString &loginType);
+    bool setLoginType(AuthProviderPtr loginType);
 
     /**
      * Sets the currently selected profile to the profile with the given ID string.
@@ -105,7 +100,7 @@ public: /* manipulation */
     void invalidateClientToken();
 
 public: /* queries */
-    const QString &loginType() const
+    const AuthProviderPtr loginType() const
     {
         return m_loginType;
     }
@@ -141,12 +136,6 @@ public: /* queries */
     //! Returns whether the account is NotVerified, Verified or Online
     AccountStatus accountStatus() const;
 
-    //! Returns endpoint for authentication
-    QString authEndpoint() const;
-
-    // ! Returns login type to display in account list or account chooser
-    QString displayLoginType() const;
-
 signals:
     /**
      * This signal is emitted when the account changes
@@ -158,7 +147,7 @@ signals:
 protected: /* variables */
     // Authentication system used.
     // Usable values: "mojang", "dummy", "elyby"
-    QString m_loginType;
+    AuthProviderPtr m_loginType;
 
     // Username taken by account.
     QString m_username;

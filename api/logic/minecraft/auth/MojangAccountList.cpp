@@ -195,7 +195,7 @@ QVariant MojangAccountList::data(const QModelIndex &index, int role) const
             return account->username();
 
         case TypeColumn:
-            return account->displayLoginType();
+            return account->loginType()->displayName();
 
         default:
             return QVariant();

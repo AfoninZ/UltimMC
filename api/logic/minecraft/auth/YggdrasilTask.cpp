@@ -40,9 +40,8 @@ void YggdrasilTask::executeTask()
     // Get the content of the request we're going to send to the server.
     QJsonDocument doc(getRequestContent());
 
-    QUrl reqUrl(m_account->authEndpoint() + getEndpoint());
-    qDebug() << m_account->authEndpoint() + getEndpoint();
-                                                QNetworkRequest netRequest(reqUrl);
+    QUrl reqUrl(m_account->loginType()->authEndpoint() + getEndpoint());
+    QNetworkRequest netRequest(reqUrl);
     netRequest.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QByteArray requestData = doc.toJson();

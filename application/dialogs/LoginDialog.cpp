@@ -15,7 +15,7 @@
 
 #include "LoginDialog.h"
 #include "ui_LoginDialog.h"
-
+#include "minecraft/auth/AuthProviders.h"
 #include "minecraft/auth/YggdrasilTask.h"
 
 #include <QtWidgets/QPushButton>
@@ -44,11 +44,11 @@ void LoginDialog::accept()
     // Setup the login task and start it
     m_account = MojangAccount::createFromUsername(ui->userTextBox->text());
     if (ui->radioMojang->isChecked())
-        m_account->setLoginType("mojang");
+        m_account->setLoginType(AuthProviders::lookup("mojang"));
     else if (ui->radioDummy->isChecked())
-        m_account->setLoginType("dummy");
+        m_account->setLoginType(AuthProviders::lookup("dummy"));
     else if (ui->radioElyby->isChecked())
-        m_account->setLoginType("elyby");
+        m_account->setLoginType(AuthProviders::lookup("elyby"));
     m_loginTask = m_account->login(nullptr, ui->passTextBox->text());
     connect(m_loginTask.get(), &Task::failed, this, &LoginDialog::onTaskFailed);
     connect(m_loginTask.get(), &Task::succeeded, this,

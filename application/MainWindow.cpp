@@ -771,15 +771,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new MainWindow
         }
         for (auto profile : account->profiles())
         {
-            auto skinsBase = BuildConfig.SKINS_BASE_MOJANG;
-            auto skinsArg = profile.id;
-            if (account->loginType() == "elyby")
-            {
-                skinsBase = BuildConfig.SKINS_BASE_ELYBY;
-                skinsArg = profile.name;
-            }
             auto meta = Env::getInstance().metacache()->resolveEntry("skins", profile.id + ".png");
-            auto action = Net::Download::makeCached(QUrl(skinsBase + skinsArg + ".png"), meta);
+            auto action = Net::Download::makeCached(account->loginType()->resolveSkinUrl(profile), meta);
             skin_dls.append(action);
             meta->setStale(true);
         }
@@ -1029,7 +1022,7 @@ void MainWindow::repopulateAccountsMenu()
         // this can be called before accountMenuButton exists
         if (profile != nullptr && accountMenuButton)
         {
-            auto profileLabel = formatProfile(profile->name, active_account->displayLoginType(), active_account->isInUse());
+            auto profileLabel = formatProfile(profile->name, active_account->loginType()->displayName(), active_account->isInUse());
             accountMenuButton->setText(profileLabel);
         }
     }
@@ -1048,8 +1041,7 @@ void MainWindow::repopulateAccountsMenu()
             MojangAccountPtr account = accounts->at(i);
             for (auto profile : account->profiles())
             {
-                auto profileLabel = formatProfile(profile.name, account->displayLoginType(), account->isInUse());
-                qDebug() << "AAA" << profileLabel;
+                auto profileLabel = formatProfile(profile.name, account->loginType()->displayName(), account->isInUse());
                 QAction *action = new QAction(profileLabel, this);
                 action->setData(account->username());
                 action->setCheckable(true);
@@ -1126,7 +1118,7 @@ void MainWindow::activeAccountChanged()
         const AccountProfile *profile = account->currentProfile();
         if (profile != nullptr)
         {
-            auto profileLabel = formatProfile(profile->name, account->displayLoginType(), account->isInUse());
+            auto profileLabel = formatProfile(profile->name, account->loginType()->displayName(), account->isInUse());
             accountMenuButton->setIcon(SkinUtils::getFaceFromCache(profile->id));
             accountMenuButton->setText(profileLabel);
             return;

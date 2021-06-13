@@ -144,7 +144,7 @@ void AccountListPage::updateButtonStates()
     ui->actionRemove->setEnabled(selection.size() > 0);
     ui->actionSetDefault->setEnabled(selection.size() > 0);
 
-    bool enableSkins = selection.size() > 0 && selection.first().data(MojangAccountList::PointerRole).value<MojangAccountPtr>()->loginType() == "mojang";
+    bool enableSkins = selection.size() > 0 && selection.first().data(MojangAccountList::PointerRole).value<MojangAccountPtr>()->loginType()->canChangeSkin();
     ui->actionUploadSkin->setEnabled(enableSkins);
     ui->actionDeleteSkin->setEnabled(enableSkins);
     
@@ -175,15 +175,8 @@ void AccountListPage::addAccount(const QString &errMsg)
 
         for (AccountProfile profile : account->profiles())
         {
-            auto skinsBase = BuildConfig.SKINS_BASE_MOJANG;
-            auto skinsArg = profile.id;
-            if (account->loginType() == "elyby")
-            {
-                skinsBase = BuildConfig.SKINS_BASE_ELYBY;
-                skinsArg = profile.name;
-            }
             auto meta = Env::getInstance().metacache()->resolveEntry("skins", profile.id + ".png");
-            auto action = Net::Download::makeCached(QUrl(skinsBase + skinsArg + ".png"), meta);
+            auto action = Net::Download::makeCached(account->loginType()->resolveSkinUrl(profile), meta);
             job->addNetAction(action);
             meta->setStale(true);
         }

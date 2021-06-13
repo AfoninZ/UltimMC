@@ -16,6 +16,7 @@
  */
 
 #include "MojangAccount.h"
+#include "AuthProviders.h"
 #include "flows/RefreshTask.h"
 #include "flows/AuthenticateTask.h"
 
@@ -40,7 +41,7 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
         return nullptr;
     }
 
-    QString loginType = object.value("loginType").toString("mojang");
+    QString loginType = object.value("loginType").toString("dummy");
     QString username = object.value("username").toString("");
     QString clientToken = object.value("clientToken").toString("");
     QString accessToken = object.value("accessToken").toString("");
@@ -85,7 +86,7 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
         */
         account->m_user = u;
     }
-    account->m_loginType = loginType;
+    account->m_loginType = AuthProviders::lookup(loginType);
     account->m_username = username;
     account->m_clientToken = clientToken;
     account->m_accessToken = accessToken;
@@ -110,7 +111,7 @@ MojangAccountPtr MojangAccount::createFromUsername(const QString &username)
 QJsonObject MojangAccount::saveToJson() const
 {
     QJsonObject json;
-    json.insert("loginType", m_loginType);
+    json.insert("loginType", m_loginType->id());
     json.insert("username", m_username);
     json.insert("clientToken", m_clientToken);
     json.insert("accessToken", m_accessToken);
@@ -147,15 +148,12 @@ QJsonObject MojangAccount::saveToJson() const
     return json;
 }
 
-bool MojangAccount::setLoginType(const QString &loginType)
+bool MojangAccount::setLoginType(AuthProviderPtr loginType)
 {
-    // TODO: Implement a cleaner validity check
-    if (loginType == "mojang" || loginType == "dummy" || loginType == "elyby")
-    {
-        m_loginType = loginType;
-        return true;
-    }
-    return false;
+    if(m_loginType == nullptr) return false;
+    
+    m_loginType = loginType;
+    return true;
 }
 
 bool MojangAccount::setCurrentProfile(const QString &profileId)
@@ -186,32 +184,12 @@ AccountStatus MojangAccount::accountStatus() const
         return Verified;
 }
 
-QString MojangAccount::authEndpoint() const
-{
-    if(m_loginType == "elyby")
-        return BuildConfig.AUTH_BASE_ELYBY;
-
-    return BuildConfig.AUTH_BASE_MOJANG;
-}
-
-QString MojangAccount::displayLoginType() const
-{
-    if(m_loginType == "mojang")
-        return "Mojang";
-    if(m_loginType == "dummy")
-        return "Local";
-    if(m_loginType == "elyby")
-        return "Ely.by";
-
-    return "Unknown";
-}
-
 std::shared_ptr<YggdrasilTask> MojangAccount::login(AuthSessionPtr session, QString password)
 {
     Q_ASSERT(m_currentTask.get() == nullptr);
 
     // Handling alternative account types
-    if (m_loginType == "dummy")
+    if (m_loginType->dummyAuth())
     {
         if (session)
         {
