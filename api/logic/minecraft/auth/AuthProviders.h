@@ -18,4 +18,5 @@ namespace AuthProviders
 {
   MULTIMC_LOGIC_EXPORT void load();
   MULTIMC_LOGIC_EXPORT AuthProviderPtr lookup(QString id);
+  MULTIMC_LOGIC_EXPORT QList<AuthProviderPtr> getAll();
 }

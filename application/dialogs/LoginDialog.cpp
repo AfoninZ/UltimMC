@@ -26,6 +26,14 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent), ui(new Ui::LoginDia
     ui->progressBar->setVisible(false);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
+    for(auto provider: AuthProviders::getAll()) {
+        QRadioButton *button = new QRadioButton(provider->displayName());
+        m_radioButtons[provider->id()] = button;
+        ui->radioLayout->addWidget(button);
+    }
+    m_radioButtons["dummy"]->setChecked(true);
+    adjustSize();
+
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
@@ -41,14 +49,15 @@ void LoginDialog::accept()
     setUserInputsEnabled(false);
     ui->progressBar->setVisible(true);
 
-    // Setup the login task and start it
     m_account = MojangAccount::createFromUsername(ui->userTextBox->text());
-    if (ui->radioMojang->isChecked())
-        m_account->setLoginType(AuthProviders::lookup("mojang"));
-    else if (ui->radioDummy->isChecked())
-        m_account->setLoginType(AuthProviders::lookup("dummy"));
-    else if (ui->radioElyby->isChecked())
-        m_account->setLoginType(AuthProviders::lookup("elyby"));
+    for(auto providerId: m_radioButtons.keys()){
+        if(m_radioButtons[providerId]->isChecked()) {
+            m_account->setLoginType(AuthProviders::lookup(providerId));
+            break;
+        }
+    }
+
+    // Setup the login task and start it
     m_loginTask = m_account->login(nullptr, ui->passTextBox->text());
     connect(m_loginTask.get(), &Task::failed, this, &LoginDialog::onTaskFailed);
     connect(m_loginTask.get(), &Task::succeeded, this,

@@ -30,4 +30,8 @@ namespace AuthProviders
     qDebug() << "Lookup failed";
     return nullptr;
   }
+
+  QList<AuthProviderPtr> getAll() {
+    return m_providers.values();
+  }
 }
