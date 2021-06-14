@@ -111,7 +111,7 @@ AccountPtr Account::createFromUsername(const QString &username)
 QJsonObject Account::saveToJson() const
 {
     QJsonObject json;
-    json.insert("provider", m_provider->id());
+    json.insert("loginType", m_provider->id());
     json.insert("username", m_username);
     json.insert("clientToken", m_clientToken);
     json.insert("accessToken", m_accessToken);
