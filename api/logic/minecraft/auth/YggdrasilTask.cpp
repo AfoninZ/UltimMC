@@ -14,7 +14,7 @@
  */
 
 #include "YggdrasilTask.h"
-#include "MojangAccount.h"
+#include "Account.h"
 
 #include <QObject>
 #include <QString>
@@ -27,7 +27,7 @@
 
 #include <QDebug>
 
-YggdrasilTask::YggdrasilTask(MojangAccount *account, QObject *parent)
+YggdrasilTask::YggdrasilTask(Account *account, QObject *parent)
     : Task(parent), m_account(account)
 {
     changeState(STATE_CREATED);

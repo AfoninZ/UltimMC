@@ -32,10 +32,10 @@
 
 class Task;
 class YggdrasilTask;
-class MojangAccount;
+class Account;
 
-typedef std::shared_ptr<MojangAccount> MojangAccountPtr;
-Q_DECLARE_METATYPE(MojangAccountPtr)
+typedef std::shared_ptr<Account> AccountPtr;
+Q_DECLARE_METATYPE(AccountPtr)
 
 /**
  * A profile within someone's Mojang account.
@@ -57,26 +57,26 @@ enum AccountStatus
  * Said information may include things such as that account's username, client token, and access
  * token if the user chose to stay logged in.
  */
-class MULTIMC_LOGIC_EXPORT MojangAccount :
+class MULTIMC_LOGIC_EXPORT Account :
     public QObject,
     public Usable,
-    public std::enable_shared_from_this<MojangAccount>
+    public std::enable_shared_from_this<Account>
 {
     Q_OBJECT
 public: /* construction */
     //! Do not copy accounts. ever.
-    explicit MojangAccount(const MojangAccount &other, QObject *parent) = delete;
+    explicit Account(const Account &other, QObject *parent) = delete;
 
     //! Default constructor
-    explicit MojangAccount(QObject *parent = 0) : QObject(parent) {};
+    explicit Account(QObject *parent = 0) : QObject(parent) {};
 
     //! Creates an empty account for the specified user name.
-    static MojangAccountPtr createFromUsername(const QString &username);
+    static AccountPtr createFromUsername(const QString &username);
 
-    //! Loads a MojangAccount from the given JSON object.
-    static MojangAccountPtr loadFromJson(const QJsonObject &json);
+    //! Loads a Account from the given JSON object.
+    static AccountPtr loadFromJson(const QJsonObject &json);
 
-    //! Saves a MojangAccount to a JSON object and returns it.
+    //! Saves a Account to a JSON object and returns it.
     QJsonObject saveToJson() const;
 
 public: /* manipulation */

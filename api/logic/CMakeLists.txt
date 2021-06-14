@@ -205,10 +205,10 @@ set(MINECRAFT_SOURCES
     minecraft/auth/AuthProviders.cpp
     minecraft/auth/AuthSession.h
     minecraft/auth/AuthSession.cpp
-    minecraft/auth/MojangAccountList.h
-    minecraft/auth/MojangAccountList.cpp
-    minecraft/auth/MojangAccount.h
-    minecraft/auth/MojangAccount.cpp
+    minecraft/auth/AccountList.h
+    minecraft/auth/AccountList.cpp
+    minecraft/auth/Account.h
+    minecraft/auth/Account.cpp
     minecraft/auth/YggdrasilTask.h
     minecraft/auth/YggdrasilTask.cpp
     minecraft/auth/flows/AuthenticateTask.h

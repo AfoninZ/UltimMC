@@ -54,7 +54,7 @@
 #include <java/JavaUtils.h>
 #include <java/JavaInstallList.h>
 #include <launch/LaunchTask.h>
-#include <minecraft/auth/MojangAccountList.h>
+#include <minecraft/auth/AccountList.h>
 #include <SkinUtils.h>
 #include <BuildConfig.h>
 #include <net/NetJob.h>
@@ -746,11 +746,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new MainWindow
     // Update the menu when the active account changes.
     // Shouldn't have to use lambdas here like this, but if I don't, the compiler throws a fit.
     // Template hell sucks...
-    connect(MMC->accounts().get(), &MojangAccountList::activeAccountChanged, [this]
+    connect(MMC->accounts().get(), &AccountList::activeAccountChanged, [this]
             {
                 activeAccountChanged();
             });
-    connect(MMC->accounts().get(), &MojangAccountList::listChanged, [this]
+    connect(MMC->accounts().get(), &AccountList::listChanged, [this]
             {
                 repopulateAccountsMenu();
             });
@@ -1011,8 +1011,8 @@ void MainWindow::repopulateAccountsMenu()
 {
     accountMenu->clear();
 
-    std::shared_ptr<MojangAccountList> accounts = MMC->accounts();
-    MojangAccountPtr active_account = accounts->activeAccount();
+    std::shared_ptr<AccountList> accounts = MMC->accounts();
+    AccountPtr active_account = accounts->activeAccount();
 
     QString active_username = "";
     if (active_account != nullptr)
@@ -1038,7 +1038,7 @@ void MainWindow::repopulateAccountsMenu()
         // TODO: Nicer way to iterate?
         for (int i = 0; i < accounts->count(); i++)
         {
-            MojangAccountPtr account = accounts->at(i);
+            AccountPtr account = accounts->at(i);
             for (auto profile : account->profiles())
             {
                 auto profileLabel = formatProfile(profile.name, account->provider()->displayName(), account->isInUse());
@@ -1111,7 +1111,7 @@ void MainWindow::activeAccountChanged()
 {
     repopulateAccountsMenu();
 
-    MojangAccountPtr account = MMC->accounts()->activeAccount();
+    AccountPtr account = MMC->accounts()->activeAccount();
 
     if (account != nullptr && account->username() != "")
     {

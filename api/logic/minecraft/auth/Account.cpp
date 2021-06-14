@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-#include "MojangAccount.h"
+#include "Account.h"
 #include "AuthProviders.h"
 #include "flows/RefreshTask.h"
 #include "flows/AuthenticateTask.h"
@@ -31,7 +31,7 @@
 
 #include <BuildConfig.h>
 
-MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
+AccountPtr Account::loadFromJson(const QJsonObject &object)
 {
     // The JSON object must at least have a username for it to be valid.
     if (!object.value("username").isString())
@@ -69,7 +69,7 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
         profiles.append({id, name, legacy});
     }
 
-    MojangAccountPtr account(new MojangAccount());
+    AccountPtr account(new Account());
     if (object.value("user").isObject())
     {
         User u;
@@ -100,15 +100,15 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
     return account;
 }
 
-MojangAccountPtr MojangAccount::createFromUsername(const QString &username)
+AccountPtr Account::createFromUsername(const QString &username)
 {
-    MojangAccountPtr account(new MojangAccount());
+    AccountPtr account(new Account());
     account->m_clientToken = QUuid::createUuid().toString().remove(QRegExp("[{}-]"));
     account->m_username = username;
     return account;
 }
 
-QJsonObject MojangAccount::saveToJson() const
+QJsonObject Account::saveToJson() const
 {
     QJsonObject json;
     json.insert("provider", m_provider->id());
@@ -148,7 +148,7 @@ QJsonObject MojangAccount::saveToJson() const
     return json;
 }
 
-bool MojangAccount::setProvider(AuthProviderPtr provider)
+bool Account::setProvider(AuthProviderPtr provider)
 {
     if (provider == nullptr)
         return false;
@@ -156,7 +156,7 @@ bool MojangAccount::setProvider(AuthProviderPtr provider)
     return true;
 }
 
-bool MojangAccount::setCurrentProfile(const QString &profileId)
+bool Account::setCurrentProfile(const QString &profileId)
 {
     for (int i = 0; i < m_profiles.length(); i++)
     {
@@ -169,14 +169,14 @@ bool MojangAccount::setCurrentProfile(const QString &profileId)
     return false;
 }
 
-const AccountProfile *MojangAccount::currentProfile() const
+const AccountProfile *Account::currentProfile() const
 {
     if (m_currentProfile == -1)
         return nullptr;
     return &m_profiles[m_currentProfile];
 }
 
-AccountStatus MojangAccount::accountStatus() const
+AccountStatus Account::accountStatus() const
 {
     if (m_accessToken.isEmpty())
         return NotVerified;
@@ -184,7 +184,7 @@ AccountStatus MojangAccount::accountStatus() const
         return Verified;
 }
 
-std::shared_ptr<YggdrasilTask> MojangAccount::login(AuthSessionPtr session, QString password)
+std::shared_ptr<YggdrasilTask> Account::login(AuthSessionPtr session, QString password)
 {
     Q_ASSERT(m_currentTask.get() == nullptr);
 
@@ -245,7 +245,7 @@ std::shared_ptr<YggdrasilTask> MojangAccount::login(AuthSessionPtr session, QStr
     return m_currentTask;
 }
 
-void MojangAccount::authSucceeded()
+void Account::authSucceeded()
 {
     auto session = m_currentTask->getAssignedSession();
     if (session)
@@ -259,7 +259,7 @@ void MojangAccount::authSucceeded()
     emit changed();
 }
 
-void MojangAccount::authFailed(QString reason)
+void Account::authFailed(QString reason)
 {
     auto session = m_currentTask->getAssignedSession();
     // This is emitted when the yggdrasil tasks time out or are cancelled.
@@ -288,7 +288,7 @@ void MojangAccount::authFailed(QString reason)
     m_currentTask.reset();
 }
 
-void MojangAccount::fillSession(AuthSessionPtr session)
+void Account::fillSession(AuthSessionPtr session)
 {
     // the user name. you have to have an user name
     session->username = m_username;
@@ -322,7 +322,7 @@ void MojangAccount::fillSession(AuthSessionPtr session)
     session->m_accountPtr = shared_from_this();
 }
 
-void MojangAccount::decrementUses()
+void Account::decrementUses()
 {
     Usable::decrementUses();
     if(!isInUse())
@@ -332,7 +332,7 @@ void MojangAccount::decrementUses()
     }
 }
 
-void MojangAccount::incrementUses()
+void Account::incrementUses()
 {
     bool wasInUse = isInUse();
     Usable::incrementUses();
@@ -343,7 +343,7 @@ void MojangAccount::incrementUses()
     }
 }
 
-void MojangAccount::invalidateClientToken()
+void Account::invalidateClientToken()
 {
     m_clientToken = QUuid::createUuid().toString().remove(QRegExp("[{}-]"));
     emit changed();

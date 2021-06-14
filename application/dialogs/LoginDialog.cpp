@@ -49,7 +49,7 @@ void LoginDialog::accept()
     setUserInputsEnabled(false);
     ui->progressBar->setVisible(true);
 
-    m_account = MojangAccount::createFromUsername(ui->userTextBox->text());
+    m_account = Account::createFromUsername(ui->userTextBox->text());
     for(auto providerId: m_radioButtons.keys()){
         if(m_radioButtons[providerId]->isChecked()) {
             m_account->setProvider(AuthProviders::lookup(providerId));
@@ -118,7 +118,7 @@ void LoginDialog::onTaskProgress(qint64 current, qint64 total)
 }
 
 // Public interface
-MojangAccountPtr LoginDialog::newAccount(QWidget *parent, QString msg)
+AccountPtr LoginDialog::newAccount(QWidget *parent, QString msg)
 {
     LoginDialog dlg(parent);
     dlg.ui->label->setText(msg);
