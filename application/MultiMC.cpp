@@ -684,7 +684,7 @@ MultiMC::MultiMC(int &argc, char **argv) : QApplication(argc, argv)
         qDebug() << "<> Instances loaded.";
     }
 
-    // laod auth providers
+    // load auth providers
     {
         AuthProviders::load();
     }
