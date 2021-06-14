@@ -772,7 +772,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new MainWindow
         for (auto profile : account->profiles())
         {
             auto meta = Env::getInstance().metacache()->resolveEntry("skins", profile.id + ".png");
-            auto action = Net::Download::makeCached(account->loginType()->resolveSkinUrl(profile), meta);
+            auto action = Net::Download::makeCached(account->provider()->resolveSkinUrl(profile), meta);
             skin_dls.append(action);
             meta->setStale(true);
         }
@@ -996,9 +996,9 @@ void MainWindow::updateToolsMenu()
     ui->actionLaunchInstanceOffline->setMenu(launchOfflineMenu);
 }
 
-QString formatProfile(const QString & profileName,  const QString & loginType, bool used)
+QString formatProfile(const QString & profileName,  const QString & provider, bool used)
 {
-    QString textInBrackets = loginType;
+    QString textInBrackets = provider;
     if(used)
     {
         textInBrackets += ", in use";
@@ -1022,7 +1022,7 @@ void MainWindow::repopulateAccountsMenu()
         // this can be called before accountMenuButton exists
         if (profile != nullptr && accountMenuButton)
         {
-            auto profileLabel = formatProfile(profile->name, active_account->loginType()->displayName(), active_account->isInUse());
+            auto profileLabel = formatProfile(profile->name, active_account->provider()->displayName(), active_account->isInUse());
             accountMenuButton->setText(profileLabel);
         }
     }
@@ -1041,7 +1041,7 @@ void MainWindow::repopulateAccountsMenu()
             MojangAccountPtr account = accounts->at(i);
             for (auto profile : account->profiles())
             {
-                auto profileLabel = formatProfile(profile.name, account->loginType()->displayName(), account->isInUse());
+                auto profileLabel = formatProfile(profile.name, account->provider()->displayName(), account->isInUse());
                 QAction *action = new QAction(profileLabel, this);
                 action->setData(account->username());
                 action->setCheckable(true);
@@ -1118,7 +1118,7 @@ void MainWindow::activeAccountChanged()
         const AccountProfile *profile = account->currentProfile();
         if (profile != nullptr)
         {
-            auto profileLabel = formatProfile(profile->name, account->loginType()->displayName(), account->isInUse());
+            auto profileLabel = formatProfile(profile->name, account->provider()->displayName(), account->isInUse());
             accountMenuButton->setIcon(SkinUtils::getFaceFromCache(profile->id));
             accountMenuButton->setText(profileLabel);
             return;

@@ -41,7 +41,7 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
         return nullptr;
     }
 
-    QString loginType = object.value("loginType").toString("dummy");
+    QString provider = object.value("loginType").toString("dummy");
     QString username = object.value("username").toString("");
     QString clientToken = object.value("clientToken").toString("");
     QString accessToken = object.value("accessToken").toString("");
@@ -86,7 +86,7 @@ MojangAccountPtr MojangAccount::loadFromJson(const QJsonObject &object)
         */
         account->m_user = u;
     }
-    account->m_loginType = AuthProviders::lookup(loginType);
+    account->m_provider = AuthProviders::lookup(provider);
     account->m_username = username;
     account->m_clientToken = clientToken;
     account->m_accessToken = accessToken;
@@ -111,7 +111,7 @@ MojangAccountPtr MojangAccount::createFromUsername(const QString &username)
 QJsonObject MojangAccount::saveToJson() const
 {
     QJsonObject json;
-    json.insert("loginType", m_loginType->id());
+    json.insert("provider", m_provider->id());
     json.insert("username", m_username);
     json.insert("clientToken", m_clientToken);
     json.insert("accessToken", m_accessToken);
@@ -148,11 +148,11 @@ QJsonObject MojangAccount::saveToJson() const
     return json;
 }
 
-bool MojangAccount::setLoginType(AuthProviderPtr loginType)
+bool MojangAccount::setProvider(AuthProviderPtr provider)
 {
-    if (loginType == nullptr)
+    if (provider == nullptr)
         return false;
-    m_loginType = loginType;
+    m_provider = provider;
     return true;
 }
 
@@ -189,7 +189,7 @@ std::shared_ptr<YggdrasilTask> MojangAccount::login(AuthSessionPtr session, QStr
     Q_ASSERT(m_currentTask.get() == nullptr);
 
     // Handling alternative account types
-    if (m_loginType->dummyAuth())
+    if (m_provider->dummyAuth())
     {
         if (session)
         {

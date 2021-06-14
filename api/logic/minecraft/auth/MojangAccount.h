@@ -83,7 +83,7 @@ public: /* manipulation */
         /**
      * Overrides the login type on the account.
      */
-    bool setLoginType(AuthProviderPtr loginType);
+    bool setProvider(AuthProviderPtr provider);
 
     /**
      * Sets the currently selected profile to the profile with the given ID string.
@@ -100,9 +100,9 @@ public: /* manipulation */
     void invalidateClientToken();
 
 public: /* queries */
-    const AuthProviderPtr loginType() const
+    const AuthProviderPtr provider() const
     {
-        return m_loginType;
+        return m_provider;
     }
 
     const QString &username() const
@@ -147,7 +147,7 @@ signals:
 protected: /* variables */
     // Authentication system used.
     // Usable values: "mojang", "dummy", "elyby"
-    AuthProviderPtr m_loginType;
+    AuthProviderPtr m_provider;
 
     // Username taken by account.
     QString m_username;

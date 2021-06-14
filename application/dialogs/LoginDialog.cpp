@@ -52,7 +52,7 @@ void LoginDialog::accept()
     m_account = MojangAccount::createFromUsername(ui->userTextBox->text());
     for(auto providerId: m_radioButtons.keys()){
         if(m_radioButtons[providerId]->isChecked()) {
-            m_account->setLoginType(AuthProviders::lookup(providerId));
+            m_account->setProvider(AuthProviders::lookup(providerId));
             break;
         }
     }

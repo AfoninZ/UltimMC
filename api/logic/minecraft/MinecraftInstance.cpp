@@ -918,10 +918,10 @@ shared_qobject_ptr<LaunchTask> MinecraftInstance::createLaunchTask(AuthSessionPt
     }
 
     // authlib patch
-    if (session->m_accountPtr->loginType()->injectorEndpoint() != "")
+    if (session->m_accountPtr->provider()->injectorEndpoint() != "")
     {
         auto step = new InjectAuthlib(pptr, &m_injector);
-        step->setAuthServer(session->m_accountPtr->loginType()->injectorEndpoint().arg(localAuthServerPort));
+        step->setAuthServer(session->m_accountPtr->provider()->injectorEndpoint().arg(localAuthServerPort));
         process->appendStep(step);
     }
 
