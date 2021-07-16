@@ -234,7 +234,7 @@ jobs:
         run: |
           cd build
           make tcversion
-          make -l
+          make -j$(sysctl -n hw.logicalcpu)
 
       - name: Test
         run: |
