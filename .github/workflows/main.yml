@@ -46,7 +46,7 @@ jobs:
           make install
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: mmc-cracked-lin64
           path: /home/runner/MultiMC-Cracked
@@ -61,14 +61,14 @@ jobs:
           submodules: 'recursive'
 
       - name: Cache Qt
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         id: qt-cached
         with:
           path: "D:/Qt"
           key: ${{ runner.os }}-qt56-installed-d
 
       - name: Cache Qt Installer
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         if: steps.qt-cached.outputs.cache-hit != 'true'
         id: installer-cached
         with:
@@ -183,7 +183,7 @@ jobs:
           cp OpenSSL/libeay32.dll D:/MultiMC-Cracked/MultiMC/libeay32.dll
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: mmc-cracked-win32
           path: "D:/MultiMC-Cracked"
@@ -198,7 +198,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Cache Dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         id: dependencies-cache
         with:
           path: /Users/runner/Library/Caches/Homebrew
@@ -247,7 +247,7 @@ jobs:
           make install
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: mmc-cracked-osx64
           path: build/dist
