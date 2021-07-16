@@ -201,11 +201,13 @@ jobs:
         uses: actions/cache@v2.1.5
         id: dependencies-cache
         with:
-          path: ${{ github.workspace }}/../../Library/Caches/Homebrew
+          path: /Users/runner/Library/Caches/Homebrew
           key: macos-deps-cache
 
       - name: Install Dependencies
-        run: brew install openjdk@8 automake binutils bison fakeroot file-formula flex gawk grep groff gzip make qt@5 cmake
+        run: |
+          brew cleanup
+          brew install openjdk@8 automake binutils bison fakeroot file-formula flex gawk grep groff gzip make qt@5
 
       - name: Build
         run: |
