@@ -209,6 +209,8 @@ jobs:
           cmake \
           -DCMAKE_C_COMPILER=/usr/bin/clang \
           -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
+          -DCMAKE_PREFIX_PATH=/opt/homebrew/opt/qt@5/bin
+          -DQt5_DIR=/opt/homebrew/opt/qt@5/bin
           -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX:PATH=/home/runner/MultiMC-Cracked/MultiMC \
           -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
