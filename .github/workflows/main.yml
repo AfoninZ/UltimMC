@@ -227,7 +227,7 @@ jobs:
           -DMultiMC_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOS_Build/builds/status:success/number) \
           -DMultiMC_VERSION_CHANNEL=refs/heads/develop \
           -DMultiMC_BUILD_PLATFORM=osx64 \
-          -DCMAKE_OSX_DEPLOYMENT_TARGET=10.7 \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=10.9 \
           $GITHUB_WORKSPACE
 
       - name: Compile
