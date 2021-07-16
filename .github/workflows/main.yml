@@ -239,4 +239,4 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: mmc-cracked-mac
-          path: $GITHUB_WORKSPACE/build/dist
+          path: build/dist
