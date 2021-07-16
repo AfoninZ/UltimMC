@@ -232,6 +232,8 @@ jobs:
         run: |
           cd build
           make install
+          cd dist
+          tar czf MultiMC.tgz MultiMC.app
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.2.3
