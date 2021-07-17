@@ -26,7 +26,18 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DMultiMC_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json -DCMAKE_INSTALL_PREFIX:PATH=/home/runner/MultiMC-Cracked/MultiMC -DMultiMC_CHANLIST_URL=https://files.multimc.org/update/lin64/channels.json -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ -DMultiMC_ANALYTICS_ID:STRING=UA-87731965-2 -DMultiMC_LAYOUT=lin-nodeps -DMultiMC_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) -DMultiMC_BUILD_PLATFORM=lin64 $GITHUB_WORKSPACE
+          cmake \
+           -DCMAKE_BUILD_TYPE=Release \
+           -DMultiMC_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
+           -DCMAKE_INSTALL_PREFIX:PATH=/home/runner/MultiMC-Cracked/MultiMC \
+           -DMultiMC_CHANLIST_URL=https://files.multimc.org/update/lin64/channels.json \
+           -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
+           -DMultiMC_ANALYTICS_ID:STRING=UA-87731965-2 \
+           -DMultiMC_LAYOUT=lin-nodeps \
+           -DMultiMC_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
+           -DMultiMC_VERSION_CHANNEL=refs/heads/develop \
+           -DMultiMC_BUILD_PLATFORM=lin64 \
+           $GITHUB_WORKSPACE
 
       - name: Compile
         run: |
@@ -138,7 +149,19 @@ jobs:
           set CXX=D:\Qt\Tools\mingw492_32\bin\g++.exe
           mkdir build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DMultiMC_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json -DCMAKE_INSTALL_PREFIX:PATH="D:/MultiMC-Cracked/MultiMC" -DMultiMC_CHANLIST_URL=https://files.multimc.org/update/win32/channels.json -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ -DMultiMC_ANALYTICS_ID:STRING=UA-87731965-2 -DMultiMC_LAYOUT=win-bundle -DMultiMC_VERSION_BUILD=%BUILD_NUM% -DMultiMC_VERSION_CHANNEL=refs/heads/develop -DMultiMC_BUILD_PLATFORM=win32 -G "MinGW Makefiles" ..
+          cmake ^
+           -DCMAKE_BUILD_TYPE=Release ^
+           -DMultiMC_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
+           -DCMAKE_INSTALL_PREFIX:PATH="D:/MultiMC-Cracked/MultiMC" ^
+           -DMultiMC_CHANLIST_URL=https://files.multimc.org/update/win32/channels.json ^
+           -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
+           -DMultiMC_ANALYTICS_ID:STRING=UA-87731965-2 ^
+           -DMultiMC_LAYOUT=win-bundle ^
+           -DMultiMC_VERSION_BUILD=%BUILD_NUM% ^
+           -DMultiMC_VERSION_CHANNEL=refs/heads/develop ^
+           -DMultiMC_BUILD_PLATFORM=win32 ^
+           -G "MinGW Makefiles" ^
+           ..
 
       - name: Compile
         shell: cmd
