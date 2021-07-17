@@ -247,7 +247,7 @@ jobs:
         run: |
           cd build
           make install
-          chmod +x dist/Contents/MacOS/MultiMC
+          chmod +x /Users/runner/MultiMC-Cracked/build/dist/Contents/MacOS/MultiMC
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.2.4
