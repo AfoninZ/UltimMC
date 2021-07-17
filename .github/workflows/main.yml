@@ -44,7 +44,8 @@ jobs:
         run: |
           cd build
           make install
-          chmod +x MultiMC/bin/MultiMC
+          chmod +x /home/runner/MultiMC-Cracked/MultiMC/MultiMC
+          chmod +x /home/runner/MultiMC-Cracked/MultiMC/bin/MultiMC
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.2.4
