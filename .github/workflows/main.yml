@@ -201,15 +201,14 @@ jobs:
 
       - name: Cache Dependencies
         uses: actions/cache@v2.1.6
-        id: dependencies-cache
         with:
           path: /Users/runner/Library/Caches/Homebrew
-          key: macos-deps-cache
+          key: ${{ runner.os }}-deps-cache
 
       - name: Install Dependencies
         run: |
           brew cleanup
-          brew install openjdk@8 automake binutils bison fakeroot file-formula flex gawk grep groff gzip make qt@5
+          brew install automake binutils gawk groff gzip qt@5
 
       - name: Build
         run: |
