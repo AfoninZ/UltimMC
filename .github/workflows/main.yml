@@ -44,6 +44,7 @@ jobs:
         run: |
           cd build
           make install
+          chmod +x MultiMC/MultiMC
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.2.4
@@ -245,6 +246,7 @@ jobs:
         run: |
           cd build
           make install
+          chmod +x dist/Contents/MacOS/MultiMC
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.2.4
