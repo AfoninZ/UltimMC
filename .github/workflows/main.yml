@@ -208,7 +208,7 @@ jobs:
       - name: Install Dependencies
         run: |
           brew cleanup
-          brew install automake binutils gawk groff gzip qt@5
+          brew install qt@5
 
       - name: Build
         run: |
