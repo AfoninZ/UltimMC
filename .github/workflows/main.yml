@@ -230,7 +230,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd /tmp/qt5
+          cd /tmp/qt-everywhere-opensource-src-5.6.3
           ./configure -verbose -prefix /tmp/Qt/5.6/ -release -opensource -confirm-license -system-zlib -qt-libpng -qt-libjpeg -qt-freetype -qt-pcre -nomake examples -nomake tests -no-rpath -pkg-config -dbus-runtime -proprietary-codecs
           make -j$(sysctl -n hw.logicalcpu)
           make -j1 install
