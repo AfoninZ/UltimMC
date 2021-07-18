@@ -222,12 +222,15 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Install Dependencies
+      - name: Download Qt
         run: |
           cd /tmp
           curl -L https://download.qt.io/new_archive/qt/5.6/5.6.3/single/qt-everywhere-opensource-src-5.6.3.tar.xz -o qt5.tar.xz
           tar xvf qt5.tar.xz
-          cd qt5
+
+      - name: Install Dependencies
+        run: |
+          cd /tmp/qt5
           ./configure -verbose -prefix /tmp/Qt/5.6/ -release -opensource -confirm-license -system-zlib -qt-libpng -qt-libjpeg -qt-freetype -qt-pcre -nomake examples -nomake tests -no-rpath -pkg-config -dbus-runtime -proprietary-codecs
           make -j$(sysctl -n hw.logicalcpu)
           make -j1 install
