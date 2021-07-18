@@ -222,16 +222,16 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Download Qt
-        run: |
-          cd /tmp
-          curl -L https://download.qt.io/new_archive/qt/5.6/5.6.3/qt-opensource-mac-x64-clang-5.6.3.dmg -o qt5.dmg
+      - name: Cache Dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: /Users/runner/Library/Caches/Homebrew
+          key: ${{ runner.os }}-deps-cache
 
-      - name: Install Qt
+      - name: Install Dependencies
         run: |
-          cd /tmp
-          sudo hdiutil attach qt5.dmg
-          ls /Volumes/qt-opensource-mac-x64-clang-5.6.3
+          brew cleanup
+          brew install qt@5
 
       - name: Build
         run: |
@@ -243,7 +243,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DMultiMC_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
           -DCMAKE_INSTALL_PREFIX=dist \
-          -DCMAKE_PREFIX_PATH="/tmp/Qt/5.6/lib/cmake/Qt5Core;/tmp/Qt/5.6/lib/cmake/Qt5Widgets;/tmp/Qt/5.6/lib/cmake/Qt5Concurrent;/tmp/Qt/5.6/lib/cmake/Qt5Network;/tmp/Qt/5.6/lib/cmake/Qt5Test;/tmp/Qt/5.6/lib/cmake/Qt5Xml" \
+          -DCMAKE_PREFIX_PATH="$(brew --prefix qt@5)/lib/cmake/Qt5Core;$(brew --prefix qt@5)/lib/cmake/Qt5Widgets;$(brew --prefix qt@5)/lib/cmake/Qt5Concurrent;$(brew --prefix qt@5)/lib/cmake/Qt5Network;$(brew --prefix qt@5)/lib/cmake/Qt5Test;$(brew --prefix qt@5)/lib/cmake/Qt5Xml" \
           -DMultiMC_CHANLIST_URL=https://files.multimc.org/update/osx64/channels.json \
           -DMultiMC_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
           -DMultiMC_ANALYTICS_ID:STRING=UA-87731965-2 \
