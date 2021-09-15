@@ -15,7 +15,7 @@
 6. Save it
 7. Now enjoy MultiMC
 
-In case if you are using MacOS/Linux then additonational step is to make a script `MultiMC` executable by command `chmod +x MultiMC`
+In case if you are using MacOS/Linux then additional step is to make a script `MultiMC` executable by using the command `chmod +x MultiMC` in the terminal
 
 Details about the original launcher below:
 
