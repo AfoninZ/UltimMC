@@ -1,23 +1,22 @@
-> **This is a "cracked" version of a popular Minecraft launcher that lets you play the game without a Mojang account.**
+> **This is a "cracked" version of a popular Minecraft launcher (MultiMC) that lets you play the game without a Mojang account.**
 >
-> This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
+# This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
 
 ## Pre-built binaries:
-- Windows / Linux: https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop
-- MacOS: https://drive.google.com/file/d/1QKjeghZecHH9foduy6dKEmpAH9AHbRTA/view?usp=sharing
+- Windows / Linux / MacOS: https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop
 
 ## How to install and use
 1. Download pre-built binaries for your system
 2. Unpack them in your desired directory
-3. Launch the MultiMC
+3. Launch the DevLauncher
 4. Go to account settings, and you will be requested to use email and password
 5. As your email use your username, and then type a random password
 6. Save it
-7. Now enjoy MultiMC
+7. Now enjoy DevLauncher
 
-In case if you are using MacOS/Linux then additional step is to make a script `MultiMC` executable by using the command `chmod +x MultiMC` in the terminal
+In case if you are using MacOS/Linux then additional step is to make a script `DevLauncher` executable by using the command `chmod +x DevLauncher` in the terminal
 
-Details about the original launcher below:
+# Details about the original launcher below:
 
 MultiMC 5
 =========
