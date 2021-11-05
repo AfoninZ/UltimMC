@@ -1,5 +1,5 @@
 # What is this?
-A simple Ubuntu package for MultiMC that contains a script that downloads and installs real MultiMC on Ubuntu based systems.
+A simple Ubuntu package for UltimMC that contains a script that downloads and installs real UltimMC on Ubuntu based systems.
 
 It contains a `.desktop` file, an icon, and a simple script that does the heavy lifting.
 

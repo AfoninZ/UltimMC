@@ -3,8 +3,12 @@
 ## This software is not related to MultiMC developers and provided without any warranty. Please don't bomb MultiMC developers if something gets wrong using this launcher.
 
 ## Pre-built binaries:
+
 - Windows / Linux / MacOS: https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop
+
 To update the launcher delete the bin directory and the executable and replace with the newer one. Do not use inbuilt option.
+
+In case you're using a legacy version of the launcher, rename multimc.cfg or devlauncher.cfg to ultimmc.cfg
 
 ## How to install and use
 1. Download pre-built binaries for your system.
@@ -27,7 +31,7 @@ MultiMC 5
 MultiMC is a custom launcher for Minecraft that focuses on predictability, long term stability and simplicity.
 
 ## Development
-If you want to contribute, talk to us on [Discord](https://discord.gg/multimc) (this is the official MultiMC discord, do NOT talk about the cracked version here) first.
+If you want to contribute, talk to us on [Discord](https://discord.gg/multimc) (this is the OFFICIAL MultiMC discord, do NOT talk about this version here) first.
 
 While blindly submitting PRs is definitely possible, they're not necessarily going to get accepted.
 
@@ -48,7 +52,7 @@ In general, in order of importance:
 
 
 ## Translations
-Translations can be done [on crowdin](https://translate.multimc.org) (this link is for the original MultiMC launcher). Please avoid making direct pull requests to the translations repository.
+Translations can be done [on crowdin](https://translate.multimc.org) (this link is for the ORIGINAL MultiMC launcher, do not make changes for this version here). Please avoid making direct pull requests to the translations repository.
 
 ## Forking/Redistributing/Custom builds policy
 We keep MultiMC open source because we think it's important to be able to see the source code for a project like this, and we do so using the Apache license.

@@ -1,17 +1,17 @@
 Name:           MultiMC5
 Version:        1.4
 Release:        3%{?dist}
-Summary:        A local install wrapper for MultiMC
+Summary:        A local install wrapper for UltimMC
 
 License:        ASL 2.0
 URL:            https://multimc.org
 BuildArch:      x86_64
 
 Requires:       zenity qt5-qtbase wget xrandr
-Provides:       multimc MultiMC multimc5
+Provides:       ultimmc UltimMC ultimmc5
 
 %description
-A local install wrapper for MultiMC
+A local install wrapper for UltimMC
 
 %prep
 

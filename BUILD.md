@@ -11,7 +11,7 @@ Build Instructions
 
 # Note
 
-MultiMC is a portable application and is not supposed to be installed into any system folders.
+UltimMC is a portable application and is not supposed to be installed into any system folders.
 That would be anything outside your home folder. Before running `make install`, make sure
 you set the install path to something you have write access to. Never build this under
 an administrator/root level account. Don't use `sudo`. It won't work and it's not supposed to work.
@@ -43,11 +43,11 @@ Getting the project to build and run on Linux is easy if you use any modern and 
 ### Building from command line
 You need a source folder, a build folder and an install folder.
 
-Let's say you want everything in `~/MultiMC/`:
+Let's say you want everything in `~/UltimMC/`:
 
 ```
 # make all the folders
-mkdir ~/MultiMC && cd ~/MultiMC
+mkdir ~/UltimMC && cd ~/UltimMC
 mkdir build
 mkdir install
 # clone the complete source

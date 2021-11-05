@@ -1,5 +1,5 @@
 # What is this?
-A simple RPM package for MultiMC that contains a script that downloads and installs real MultiMC on Red Hat based systems.
+A simple RPM package for UltimMC that contains a script that downloads and installs real UltimMC on Red Hat based systems.
 
 It contains a `.desktop` file, a `.metainfo.xml` file, an icon, and a simple script that does the heavy lifting.
 

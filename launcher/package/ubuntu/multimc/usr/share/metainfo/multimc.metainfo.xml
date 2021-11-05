@@ -6,7 +6,7 @@
     <summary>Manage Minecraft instances with ease</summary>
     <description>
         <p>Overview</p>
-        <p>MultiMC is a free, open source launcher for Minecraft. It allows you to have multiple, cleanly separated instances of Minecraft (each with their own mods, texture packs, saves, etc) and helps you manage them and their associated options with a simple and powerful interface.</p>
+        <p>UltimMC is a free, open source launcher for Minecraft. It allows you to have multiple, cleanly separated instances of Minecraft (each with their own mods, texture packs, saves, etc) and helps you manage them and their associated options with a simple and powerful interface.</p>
         <p>Features</p>
         <ul>
             <li>Manage multiple instances of Minecraft at once</li>
@@ -41,10 +41,10 @@
     <releases>
         <release date="2021-01-07" version="5"/>
     </releases>
-    <url type="homepage">https://multimc.org/</url>
+    <url type="homepage">https://github.com/AfoninZ/MultiMC5-Cracked</url>
     <url type="help">https://discord.com/invite/0k2zsXGNHs0fE4Wm</url>
     <url type="faq">https://github.com/MultiMC/Launcher/wiki/FAQ</url>
-    <url type="bugtracker">https://github.com/MultiMC/Launcher/issues</url>
+    <url type="bugtracker">https://github.com/AfoninZ/MultiMC5-Cracked/issues</url>
     <url type="translate">https://translate.multimc.org/</url>
     <url type="donation">https://www.patreon.com/multimc</url>
     <developer_name>The MultiMC Team</developer_name>
