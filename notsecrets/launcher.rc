@@ -15,7 +15,7 @@ BEGIN
         BEGIN
                 BLOCK "000004b0"
                 BEGIN
-                        VALUE "CompanyName", "UltimMC Contributors"
+                        VALUE "CompanyName", "MultiMC and UltimMC Contributors"
                         VALUE "FileDescription", "A Cracked Minecraft Launcher"
                         VALUE "FileVersion", "1.0.0.0"
                         VALUE "ProductName", "Launcher"

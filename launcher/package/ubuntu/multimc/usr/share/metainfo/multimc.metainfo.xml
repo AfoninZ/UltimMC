@@ -6,7 +6,7 @@
     <summary>Manage Minecraft instances with ease</summary>
     <description>
         <p>Overview</p>
-        <p>UltimMC is a free, open source launcher for Minecraft. It allows you to have multiple, cleanly separated instances of Minecraft (each with their own mods, texture packs, saves, etc) and helps you manage them and their associated options with a simple and powerful interface.</p>
+        <p>UltimMC is a free, open source launcher for Minecraft. It allows you to have multiple, cleanly separated instances of Minecraft (each with their own mods, texture packs, saves, etc) and helps you manage them and their associated options with a simple and powerful interface. It is a light fork of MultiMC with ElyBy and local (cracked) account support</p>
         <p>Features</p>
         <ul>
             <li>Manage multiple instances of Minecraft at once</li>
