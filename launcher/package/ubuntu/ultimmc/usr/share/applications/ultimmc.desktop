@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Game;
-Exec=/opt/multimc/run.sh
-Icon=/opt/multimc/icon.svg
+Exec=/opt/ultimmc/run.sh
+Icon=/opt/ultimmc/icon.svg
 Keywords=game;Minecraft;
 MimeType=
 Name=UltimMC
