@@ -5,13 +5,8 @@
 ## Pre-built binaries:
 - Windows / Linux / MacOS: https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop
 
-To update the launcher delete the following items and replace with the newer one from the above link. Do not use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
+To update the launcher replace all replaceable files and folders with the newer one from the above link. Do not use the inbuilt option, as that downloads the MultiMC launcher instead (this will be fixed in a future version).
 
-- Linux: `bin` directory, `UltimMC` script
-
-- Windows: `iconengines`, `imageformats`, `jars`, `platforms` directories, all files ending with `.dll`, `.dll.a` or `.exe` (turn on file endings).
-
-- MacOS: (Unknown)
 
 ## How to install and use
 1. Download pre-built binaries for your system.
