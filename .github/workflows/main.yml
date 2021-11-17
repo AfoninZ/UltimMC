@@ -95,7 +95,7 @@ jobs:
 
       - name: Download Qt Installer
         if: steps.installer-cached.outputs.cache-hit != 'true' && steps.qt-cached.outputs.cache-hit != 'true'
-        run: curl https://download.qt.io/new_archive/qt/5.6/5.6.3/qt-opensource-windows-x86-mingw492-5.6.3.exe --output installer.exe
+        run: curl https://download.qt.io/new_archive/qt/5.11/5.11.3/qt-opensource-windows-x86-5.11.3.exe --output installer.exe
 
       - name: Download Qt non-Interactive Script
         if: steps.qt-cached.outputs.cache-hit != 'true'
