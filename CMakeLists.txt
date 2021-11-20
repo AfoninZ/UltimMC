@@ -79,7 +79,7 @@ set(Launcher_PASTE_EE_API_KEY "utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ" CACHE 
 set(Launcher_IMGUR_CLIENT_ID "5b97b0713fba4a3" CACHE STRING "Client ID you can get from Imgur when you register an application")
 
 # Google analytics ID
-set(Launcher_ANALYTICS_ID "UA-87731965-2" CACHE STRING "ID you can get from Google analytics")
+set(Launcher_ANALYTICS_ID "" CACHE STRING "ID you can get from Google analytics")
 
 # Bug tracker URL
 set(Launcher_BUG_TRACKER_URL "" CACHE STRING "URL for the bug tracker.")
