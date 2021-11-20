@@ -28,13 +28,8 @@ jobs:
           cd build
           cmake \
            -DCMAKE_BUILD_TYPE=Release \
-           -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
            -DCMAKE_INSTALL_PREFIX:PATH=/home/runner/UltimMC/UltimMC \
-           -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ \
-           -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
-           -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
            -DLauncher_LAYOUT=lin-nodeps \
-           -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
            -DLauncher_BUILD_PLATFORM=lin64 \
            $GITHUB_WORKSPACE
 
@@ -149,13 +144,8 @@ jobs:
           cd build
           cmake ^
            -DCMAKE_BUILD_TYPE=Release ^
-           -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
            -DCMAKE_INSTALL_PREFIX:PATH="D:/UltimMC/UltimMC" ^
-           -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ ^
-           -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
-           -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 ^
            -DLauncher_LAYOUT=win-bundle ^
-           -DLauncher_VERSION_BUILD=%BUILD_NUM% ^
            -DLauncher_BUILD_PLATFORM=win32 ^
            -G "MinGW Makefiles" ^
            ..
@@ -224,7 +214,6 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          brew cleanup
           brew install qt@5
 
       - name: Build
@@ -235,15 +224,10 @@ jobs:
           -DCMAKE_C_COMPILER=/usr/bin/clang \
           -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
           -DCMAKE_BUILD_TYPE=Release \
-          -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
           -DCMAKE_INSTALL_PREFIX:PATH="/Users/runner/work/UltimMC/build/dist" \
           -DCMAKE_PREFIX_PATH="$(brew --prefix qt@5);$(brew --prefix qt@5)/lib/cmake/Qt5Core;$(brew --prefix qt@5)/lib/cmake/Qt5Widgets;$(brew --prefix qt@5)/lib/cmake/Qt5Concurrent;$(brew --prefix qt@5)/lib/cmake/Qt5Network;$(brew --prefix qt@5)/lib/cmake/Qt5Test;$(brew --prefix qt@5)/lib/cmake/Qt5Xml" \
           -DQt5_DIR="$(brew --prefix qt@5)" \
-          -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ \
-          -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
-          -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
           -DLauncher_LAYOUT=mac-bundle \
-          -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOSAmd645152_Build/builds/status:success/number) \
           -DLauncher_BUILD_PLATFORM=osx64-5.15.2 \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
           $GITHUB_WORKSPACE
