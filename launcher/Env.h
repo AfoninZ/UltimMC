@@ -25,16 +25,16 @@ class Index;
 
 class Env
 {
-    friend class Launcher;
+    friend class Application;
 private:
     struct Private;
     Env();
     ~Env();
     static void dispose();
 public:
-    static Env& getInstance();
+    static Env* getInstance();
 
-    QNetworkAccessManager &qnam() const;
+    QNetworkAccessManager &network() const;
 
     shared_qobject_ptr<HttpMetaCache> metacache();
 

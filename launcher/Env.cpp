@@ -39,13 +39,13 @@ Env::~Env()
     delete d;
 }
 
-Env& Env::Env::getInstance()
+Env* Env::Env::getInstance()
 {
     if(!instance)
     {
         instance = new Env();
     }
-    return *instance;
+    return instance;
 }
 
 void Env::dispose()
@@ -59,7 +59,7 @@ shared_qobject_ptr< HttpMetaCache > Env::metacache()
     return d->m_metacache;
 }
 
-QNetworkAccessManager& Env::qnam() const
+QNetworkAccessManager& Env::network() const
 {
     return d->m_qnam;
 }
