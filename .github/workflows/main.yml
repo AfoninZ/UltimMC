@@ -34,9 +34,10 @@ jobs:
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
            -DLauncher_LAYOUT=lin-nodeps \
-           -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
            -DLauncher_BUILD_PLATFORM=lin64 \
            $GITHUB_WORKSPACE
+           
+           # -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
 
       - name: Compile
         run: |
@@ -151,7 +152,6 @@ jobs:
            -DCMAKE_BUILD_TYPE=Release ^
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json ^
            -DCMAKE_INSTALL_PREFIX:PATH="D:/UltimMC/UltimMC" ^
-           -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ ^
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 ^
            -DLauncher_LAYOUT=win-bundle ^
@@ -159,6 +159,8 @@ jobs:
            -DLauncher_BUILD_PLATFORM=win32 ^
            -G "MinGW Makefiles" ^
            ..
+           
+           REM -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ ^
 
       - name: Compile
         shell: cmd
@@ -243,10 +245,11 @@ jobs:
           -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
           -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
           -DLauncher_LAYOUT=mac-bundle \
-          -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOSAmd645152_Build/builds/status:success/number) \
           -DLauncher_BUILD_PLATFORM=osx64-5.15.2 \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
           $GITHUB_WORKSPACE
+          
+          # -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOSAmd645152_Build/builds/status:success/number) \
 
       - name: Compile
         run: |
