@@ -1,3 +1,4 @@
+#include <Application.h>
 #include "MinecraftInstance.h"
 #include <minecraft/launch/CreateGameFolders.h>
 #include <minecraft/launch/ExtractNatives.h>
