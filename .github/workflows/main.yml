@@ -226,7 +226,6 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          brew cleanup
           brew install qt@5
 
       - name: Build
