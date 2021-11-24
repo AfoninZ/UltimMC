@@ -218,12 +218,6 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Cache Dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: /Users/runner/Library/Caches/Homebrew
-          key: ${{ runner.os }}-deps-cache
-
       - name: Install Dependencies
         run: |
           brew install qt@5
