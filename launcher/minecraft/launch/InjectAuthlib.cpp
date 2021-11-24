@@ -2,7 +2,6 @@
 #include <launch/LaunchTask.h>
 #include <minecraft/MinecraftInstance.h>
 #include <FileSystem.h>
-#include <Env.h>
 #include <Json.h>
 
 InjectAuthlib::InjectAuthlib(LaunchTask *parent, AuthlibInjectorPtr* injector) : LaunchStep(parent)
