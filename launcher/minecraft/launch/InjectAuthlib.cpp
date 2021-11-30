@@ -3,7 +3,7 @@
 #include <minecraft/MinecraftInstance.h>
 #include <FileSystem.h>
 #include <Json.h>
-#include "../../Application.h"
+#include <Application.h>
 
 InjectAuthlib::InjectAuthlib(LaunchTask *parent, AuthlibInjectorPtr* injector) : LaunchStep(parent)
 {
