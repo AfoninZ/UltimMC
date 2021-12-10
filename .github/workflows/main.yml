@@ -22,6 +22,12 @@ jobs:
           sudo apt update
           sudo apt install libgl1-mesa-dev qt5-default
 
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
       - name: Build
         run: |
           mkdir build
@@ -34,9 +40,10 @@ jobs:
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
            -DLauncher_LAYOUT=lin-nodeps \
-           -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
            -DLauncher_BUILD_PLATFORM=lin64 \
            $GITHUB_WORKSPACE
+
+           # -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_Linux64_Build/builds/status:success/number) \
 
       - name: Compile
         run: |
@@ -115,8 +122,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
-          java-version: '8'
-          architecture: x86
+          java-version: '17'
 
       - name: Setup zlib
         run: |
@@ -155,10 +161,11 @@ jobs:
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ ^
            -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 ^
            -DLauncher_LAYOUT=win-bundle ^
-           -DLauncher_VERSION_BUILD=%BUILD_NUM% ^
            -DLauncher_BUILD_PLATFORM=win32 ^
            -G "MinGW Makefiles" ^
            ..
+
+           REM -DLauncher_VERSION_BUILD=%BUILD_NUM% ^
 
       - name: Compile
         shell: cmd
@@ -222,9 +229,14 @@ jobs:
           path: /Users/runner/Library/Caches/Homebrew
           key: ${{ runner.os }}-deps-cache
 
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
       - name: Install Dependencies
         run: |
-          brew cleanup
           brew install qt@5
 
       - name: Build
@@ -243,10 +255,11 @@ jobs:
           -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
           -DLauncher_ANALYTICS_ID:STRING=UA-87731965-2 \
           -DLauncher_LAYOUT=mac-bundle \
-          -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOSAmd645152_Build/builds/status:success/number) \
           -DLauncher_BUILD_PLATFORM=osx64-5.15.2 \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 \
           $GITHUB_WORKSPACE
+
+          # -DLauncher_VERSION_BUILD=$(curl https://teamcity.multimc.org/guestAuth/app/rest/buildTypes/MultiMC_Launcher_MacOSAmd645152_Build/builds/status:success/number) \
 
       - name: Compile
         run: |
