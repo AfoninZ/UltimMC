@@ -210,7 +210,7 @@ void Yggdrasil::processResponse(QJsonObject responseData) {
     m_data->yggdrasilToken.issueInstant = QDateTime::currentDateTimeUtc();
 
     if(responseData.contains("selectedProfile")) {
-        yggdrasilProfile = responseData.value("selectedProfile").toObject();
+        //m_data->minecraftProfile = responseData.value("selectedProfile").toObject();
     }
 
     // We've made it through the minefield of possible errors. Return true to indicate that
