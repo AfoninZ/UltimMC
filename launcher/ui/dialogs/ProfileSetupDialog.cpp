@@ -59,7 +59,9 @@ ProfileSetupDialog::~ProfileSetupDialog()
 
 void ProfileSetupDialog::on_buttonBox_accepted()
 {
-    setupProfile(currentCheck);
+    //setNameStatus(NameStatus::Available);
+    accept();
+    //setupProfile(currentCheck);
 }
 
 void ProfileSetupDialog::on_buttonBox_rejected()
