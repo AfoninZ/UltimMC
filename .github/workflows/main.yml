@@ -55,6 +55,8 @@ jobs:
           make install
           chmod +x /home/runner/UltimMC/UltimMC/UltimMC
           chmod +x /home/runner/UltimMC/UltimMC/bin/UltimMC
+          cp $GITHUB_WORKSPACE/purify.sh /home/runner/UltimMC/UltimMC/purify.sh
+          chmod +x /home/runner/UltimMC/UltimMC/purify.sh
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2.3.1
