@@ -6,6 +6,7 @@ printhelp() {
 }
 
 origdir="$(dirname "${BASH_SOURCE[0]}")"
+cd "$origdir" || exit
 
 if [[ "$*" = '' ]]
 then
@@ -25,22 +26,24 @@ fi
 
 for each in "$@"
 do
-    if [[ -d ./instances/$each ]]
+    if ! [[ -d ./instances/"$each" ]]
     then
-        cd ./instances/"$each" || exit
-        for log in ./.minecraft/logs/*
-        do
-            mkdir -p .uncleanbackup
-            cp "$log" .uncleanbackup
-            sed -i '/[eE]ly/d' "$log"
-            sed -i '/[Aa]uth[Ll]ib/d' "$log"
-            sed -i '/400/d' "$log"
-            sed -i 's/UltimMC/MultiMC/g' "$log"
-            sed -i 's/ultim/multi/g' "$log"
-        done
-        cd "$origdir" || exit
-    else
         printf "Instance '%s' does not exist!\n" "$each"
         exit 1
     fi
+    cd ./instances/"$each"/.minecraft || {
+        printf "Instance '%s' is invalid!\n" "$each"
+        exit 1
+    }
+    for log in ./logs/*
+    do
+        mkdir -p .uncleanbackup
+        cp "$log" .uncleanbackup
+        sed -i '/[eE]ly/d' "$log"
+        sed -i '/[Aa]uth[Ll]ib/d' "$log"
+        sed -i '/400/d' "$log"
+        sed -i 's/UltimMC/MultiMC/g' "$log"
+        sed -i 's/ultimmc/multimc/g' "$log"
+    done
+    cd "$origdir" || exit 1
 done
