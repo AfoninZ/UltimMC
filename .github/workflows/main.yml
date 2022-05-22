@@ -71,44 +71,11 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Cache Qt
-        uses: actions/cache@v3.0.2
-        id: qt-cached
-        with:
-          path: "D:/Qt"
-          key: ${{ runner.os }}-qt56-installed-d
-
-      - name: Cache Qt Installer
-        uses: actions/cache@v3.0.2
-        if: steps.qt-cached.outputs.cache-hit != 'true'
-        id: installer-cached
-        with:
-          path: "installer.exe"
-          key: ${{ runner.os }}-qt56-installer
-
-      - name: Create QtAccount File
-        if: steps.qt-cached.outputs.cache-hit != 'true'
-        run: |
-          mkdir C:/Users/runneradmin/AppData/Roaming/Qt/
-          curl https://gist.github.com/Sebastian-byte/1086e0a3126be6a66580b71afcf8bd99/raw/797d8b90edf07ce88f265b38a573cc6b1fb45bfb/qtaccount.txt --output C:/Users/runneradmin/AppData/Roaming/Qt/qtaccount.ini
-
-      - name: Download Qt Installer
-        if: steps.installer-cached.outputs.cache-hit != 'true' && steps.qt-cached.outputs.cache-hit != 'true'
-        run: curl https://download.qt.io/new_archive/qt/5.6/5.6.3/qt-opensource-windows-x86-mingw492-5.6.3.exe --output installer.exe
-
-      - name: Download Qt non-Interactive Script
-        if: steps.qt-cached.outputs.cache-hit != 'true'
-        run: curl https://gist.githubusercontent.com/PibePlayer/cf6bd0a9f7e4d51e3e618ceedfba4b94/raw/09cb1415952b914f1567ce935d4618c396aec340/qt-installer-noninteractive.qs --output nonInteractive.qs
-
       - name: Install Qt
-        if: steps.qt-cached.outputs.cache-hit != 'true'
-        shell: cmd
-        run: installer.exe -v --script nonInteractive.qs --silent
+        uses: jurplel/install-qt-action@v2.14.0
 
       - name: Setup CMake
-        run: |
-          curl -L https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-windows-i386.zip -o cmake.zip
-          unzip cmake.zip
+        uses: lukka/get-cmake@latest
 
       - name: Setup JDK
         uses: actions/setup-java@v3.3.0
