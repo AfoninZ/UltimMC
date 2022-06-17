@@ -8,7 +8,7 @@ rm -r bin
 rm UltimMC
 echo "TRIED TO DELETE OLD ULTIMMC SUCCESSFULLY!"
 echo "DOWNLOADING NEW ULTIMMC..."
-curl -fsSLo update.zip https://nightly.link/AfoninZ/UltimMC/workflows/main/develop/mmc-cracked-lin64.zip
+curl -fsSLo update.zip https://nightly.link/UltimMC/Launcher/workflows/main/develop/mmc-cracked-lin64.zip
 echo "DOWNLOADED AS update.zip FILE"
 echo "APPLYING UPDATE..."
 unzip update.zip
