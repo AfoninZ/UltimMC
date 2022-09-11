@@ -18,7 +18,8 @@ void InjectAuthlib::executeTask()
         return;
     }
 
-    auto latestVersionInfo = QString("https://authlib-injector.yushi.moe/artifact/latest.json");
+    auto latestVersionInfo = QString("https://authlib-injector.yushi.moe/artifact/47.json");
+    // Not the latest, modifing because of the breaking changes on 1.2.0
     auto netJob = new NetJob("Injector versions info download", APPLICATION->network());
     MetaEntryPtr entry = APPLICATION->metacache()->resolveEntry("injectors", "version.json");
     if (!m_offlineMode)
