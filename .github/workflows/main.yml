@@ -275,7 +275,7 @@ jobs:
 
       - name: Install
         run: |
-          brew remove --ignore-dependencies -f glib zstd pcre2 glib gettext jpeg-turbo freetype
+          brew remove --ignore-dependencies -f glib zstd pcre2 glib gettext jpeg-turbo freetype libpng
           cd build
           make install
           chmod +x /Users/runner/work/UltimMC/build/dist/UltimMC.app/Contents/MacOS/UltimMC
