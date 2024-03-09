@@ -244,13 +244,14 @@ jobs:
         run: |
           mkdir build
           cd build
+          echo $(brew --prefix qt@5)
           cmake \
            -DCMAKE_C_COMPILER=/usr/bin/clang \
            -DCMAKE_CXX_COMPILER=/usr/bin/clang++ \
            -DCMAKE_BUILD_TYPE=Release \
            -DLauncher_NOTIFICATION_URL:STRING=https://files.multimc.org/notifications.json \
            -DCMAKE_INSTALL_PREFIX:PATH="/Users/runner/work/UltimMC/build/dist" \
-           -DCMAKE_PREFIX_PATH="$(brew --prefix qt@5);$(brew --prefix qt@5)/lib/cmake/Qt5Core;$(brew --prefix qt@5)/lib/cmake/Qt5Widgets;$(brew --prefix qt@5)/lib/cmake/Qt5Concurrent;$(brew --prefix qt@5)/lib/cmake/Qt5Network;$(brew --prefix qt@5)/lib/cmake/Qt5Test;$(brew --prefix qt@5)/lib/cmake/Qt5Xml" \
+           -DCMAKE_PREFIX_PATH="$(brew --prefix qt@5)/lib/cmake" \
            -DQt5_DIR="$(brew --prefix qt@5)" \
            -DLauncher_UPDATER_BASE=https://files.multimc.org/update/ \
            -DLauncher_PASTE_EE_API_KEY:STRING=utLvciUouSURFzfjPxLBf5W4ISsUX4pwBDF7N1AfZ \
