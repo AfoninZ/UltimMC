@@ -36,7 +36,7 @@
    <item>
     <widget class="QLineEdit" name="userTextBox">
      <property name="placeholderText">
-      <string>Email</string>
+      <string>Ely.by Username</string>
      </property>
     </widget>
    </item>
